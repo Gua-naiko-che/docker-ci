@@ -8,7 +8,7 @@ namespace tests
 {
     public class UnitTest1
     {
-        [Fact]
+        [Fact(Skip = "just testing infra")]
         public void Test1()
         {
             using var driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
@@ -16,6 +16,12 @@ namespace tests
             By titleSelector = By.CssSelector("h1");
             IWebElement title = driver.FindElement(titleSelector);
             Assert.Equal("Hello, world!", title.Text);
+        }
+
+        [Fact]
+        public void Test2()
+        {
+            Assert.True(true);
         }
     }
 }
