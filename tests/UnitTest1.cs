@@ -19,9 +19,20 @@ namespace tests
         }
 
         [Fact]
-        public void Test2()
+        public void TestGoogle()
         {
-            Assert.True(true);
+            var options = new ChromeOptions();
+            options.AddArgument("--headless");
+            options.AddArgument("--no-sandbox");
+            options.BinaryLocation = "/opt/google/chrome/chrome";
+
+            ChromeDriverService service = ChromeDriverService.CreateDefaultService("/opt/selenium", "chromedriver");
+
+            using var driver = new ChromeDriver(service, options);
+            driver.Navigate().GoToUrl("https://www.google.com/");
+            var logoSelector = By.CssSelector("#hplogo");
+            var logo = driver.FindElement(logoSelector);
+            Assert.Equal("Google", logo.GetAttribute("alt").ToString());
         }
     }
 }
