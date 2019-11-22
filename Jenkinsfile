@@ -1,9 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage('build') {
+        stage('Test') {
             steps {
-                powershell 'docker info'
+                powershell 'docker-compose up --build --abort-on-container-exit'
+            }
+            post {
+                cleanup {
+                    powershell "docker-compose down"
+                }
             }
         }
     }
