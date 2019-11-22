@@ -12,6 +12,7 @@ namespace tests
             var options = new ChromeOptions();
             options.AddArgument("--headless");
             options.AddArgument("--no-sandbox");
+            options.AddArgument("--whitelisted-ips=''");
             options.BinaryLocation = "/opt/google/chrome/chrome";
 
             ChromeDriverService service = ChromeDriverService.CreateDefaultService("/opt/selenium", "chromedriver");
